@@ -1,20 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&display=swap');
 @import "tailwindcss";
 
 @layer base {
   :root {
-    /* Map background/foreground to Tailwind neutral tokens */
-    --color-background: var(--color-neutral-100);
-    --color-foreground: var(--color-neutral-900);
-    --color-card: var(--color-neutral-100);
-    --color-card-foreground: var(--color-foreground);
-    --color-border: var(--color-border, var(--color-neutral-900));
-    --color-muted-foreground: var(--color-muted-foreground, var(--color-neutral-500));
-    --color-primary: var(--color-primary, var(--color-foreground));
-  }
-
-  :root.dark {
+    /* Dark theme (default): map background/foreground to Tailwind neutral tokens */
     --color-background: var(--color-neutral-800);
     --color-foreground: var(--color-neutral-100);
     --color-card: var(--color-card, var(--color-background));
@@ -22,23 +11,74 @@
     --color-border: var(--color-border, var(--color-neutral-800));
     --color-muted-foreground: var(--color-muted-foreground, var(--color-neutral-400));
     --color-primary: var(--color-primary, var(--color-foreground));
+    /* Gradient stops for icon/logo gradients */
+    --gradient-stop-1: #7c3aed;
+    --gradient-stop-2: #6d28d9;
+    --gradient-stop-3: #4f46e5;
+    /* Background layers (local assets copied from reference repo) */
+    --site-base: #050507;
+    --bg-image-main: url('/assets/backgrounds/bg-main-dark-1440w.jpg');
+    --bg-image-main-curves: url('/assets/backgrounds/bg-main-dark.svg');
+    --bg-image-subtle-1: url('/assets/backgrounds/bg-subtle-1-dark-1440w.jpg');
+    --bg-image-subtle-2: url('/assets/backgrounds/bg-subtle-2-dark-1440w.jpg');
+    --bg-image-footer: url('/assets/backgrounds/bg-footer-dark-1440w.jpg');
+    --bg-noise: url('/assets/backgrounds/noise.png');
+    --bg-gradient-size: 168%;
   }
 
+  /* Removed light/dark toggle: dark is now the site default */
+
   html, body {
-    background-color: var(--color-background);
+    background-color: var(--site-base);
     color: var(--color-foreground);
     font-family: 'Montserrat', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
   }
 
+  /* Global stacked backgrounds (copied approach from the reference repo)
+     Order: noise, footer, curves, main image, base color. Use `background-blend-mode` to mix. */
+  .backgrounds {
+    min-height: 100%;
+    isolation: isolate;
+    background:
+      /* noise */ var(--bg-noise) top center/220px repeat,
+      /* footer */ var(--bg-image-footer) bottom center/var(--bg-gradient-size) no-repeat,
+      /* header curves */ var(--bg-image-main-curves) top center/var(--bg-gradient-size) no-repeat,
+      /* main image */ var(--bg-image-main) top center/var(--bg-gradient-size) no-repeat,
+      /* base */ var(--site-base);
+     /* Use less destructive blend modes so background images keep their color.
+       Keep noise and SVG overlay, but avoid 'darken' which desaturates images. */
+    background-blend-mode: overlay, normal, overlay, normal, normal;
+  }
+
+  /* Lazy-swap: reveal subtle/footer high-res images after the page has loaded */
+  :root.loaded {
+    --bg-image-subtle-1: url('/assets/backgrounds/bg-subtle-1-dark-1440w.jpg');
+    --bg-image-subtle-2: url('/assets/backgrounds/bg-subtle-2-dark-1440w.jpg');
+    --bg-image-footer: url('/assets/backgrounds/bg-footer-dark-1440w.jpg');
+  }
+
+  @media (min-width: 50em) {
+    :root {
+      --bg-scale: 1;
+      --bg-image-main: url('/assets/backgrounds/bg-main-dark-1440w.jpg');
+    }
+
+    :root.loaded {
+      --bg-image-subtle-1: url('/assets/backgrounds/bg-subtle-1-dark-1440w.jpg');
+      --bg-image-subtle-2: url('/assets/backgrounds/bg-subtle-2-dark-1440w.jpg');
+      --bg-image-footer: url('/assets/backgrounds/bg-footer-dark-1440w.jpg');
+    }
+  }
+
   h1, h2 {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Montserrat', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
   }
 
   /* Global typographic scale for coherence (uses Tailwind CSS variables) */
   h1 {
     font-size: var(--text-4xl);
     line-height: var(--text-4xl--line-height);
-    font-family: 'Playfair Display', serif;
+    font-family: 'Montserrat', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
     font-weight: 600;
   }
   @media (min-width: 48rem) {
@@ -48,7 +88,7 @@
   h2 {
     font-size: var(--text-3xl);
     line-height: var(--text-3xl--line-height);
-    font-family: 'Playfair Display', serif;
+    font-family: 'Montserrat', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
     font-weight: 600;
   }
   @media (min-width: 48rem) {
@@ -78,6 +118,73 @@
 @layer utilities {
   .bg-background { background-color: var(--color-background); }
   .text-foreground { color: var(--color-foreground); }
-  .bg-card { background-color: var(--color-card); }
+  /* Make components use a solid near-black background for consistency across the site */
+  .bg-background {
+    background-color: #090b11; /* pure black base for components */
+    color: var(--color-foreground);
+  }
+
+  .bg-card {
+    background-color: #090b11;
+    color: var(--color-card-foreground);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 0.75rem;
+    backdrop-filter: blur(4px);
+  }
   .text-card-foreground { color: var(--color-card-foreground); }
+  /* Apply the document-level gradient to inline SVG icons (stroke). */
+  .icon-gradient { fill: none !important; stroke: url(#icon-gradient) !important; color: transparent !important; }
+
+  /* Site top gradient layer shown behind content on all pages */
+  .site-top-gradient {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 360px;
+    pointer-events: none;
+    z-index: -10;
+    background:
+      radial-gradient(600px 260px at 15% 60%, rgba(124,58,237,0.22) 0%, transparent 40%),
+      radial-gradient(500px 220px at 80% 55%, rgba(79,70,229,0.18) 0%, transparent 35%),
+      linear-gradient(180deg, rgba(124,58,237,0.10), rgba(79,70,229,0.04) 40%, transparent 70%);
+    mix-blend-mode: overlay;
+    opacity: 0.9;
+  }
+
+  /* Utility to apply the main curved SVG background to a block (like the reference repo) */
+  .component-bg-main {
+    background-image: var(--bg-image-main-curves);
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: 140%;
+  }
+
+  /* Add a purple glow pseudo-layer to components using the main curved background
+     This ensures the purple accent is visible even when the component has a dark background color. */
+  .component-bg-main {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .component-bg-main::before {
+    content: "";
+    position: absolute;
+    top: -2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 140%;
+    height: 260px;
+    background: radial-gradient(600px 260px at 15% 60%, rgba(124,58,237,0.22) 0%, transparent 40%),
+                radial-gradient(500px 220px at 80% 55%, rgba(79,70,229,0.18) 0%, transparent 35%);
+    mix-blend-mode: overlay;
+    opacity: 0.16;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .component-bg-main > * {
+    position: relative;
+    z-index: 1;
+  }
 }

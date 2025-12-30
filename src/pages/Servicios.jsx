@@ -4,28 +4,28 @@ import { Wrench, PaintBucket, Palette, ScanSearch, ShieldCheck } from 'lucide-re
 
 const servicesData = [
   {
-    icon: <Wrench className="w-12 h-12 text-primary" />,
+    icon: <Wrench className="w-12 h-12 icon-gradient" />,
     title: 'Reparación de Bañeras y Platos de Ducha',
     description: 'Solucionamos cualquier desperfecto en la superficie de tu bañera o plato de ducha. Eliminamos grietas, agujeros, óxido y desconchados, devolviendo la integridad estructural y estética a tus sanitarios. Nuestro proceso de reparación es rápido, limpio y evita la necesidad de costosas obras y reemplazos.',
     image: 'agu1a.jpg',
     alt: 'Bañera con un desconchado antes de ser reparada'
   },
   {
-    icon: <PaintBucket className="w-12 h-12 text-primary" />,
+    icon: <PaintBucket className="w-12 h-12 icon-gradient" />,
     title: 'Esmaltado Profesional',
     description: 'El esmaltado es la solución definitiva para renovar por completo la apariencia de tus sanitarios. Aplicamos un esmalte de poliuretano de alta resistencia que crea una nueva superficie lisa, brillante y extremadamente duradera. Es ideal para bañeras y lavabos que han perdido su brillo, tienen manchas permanentes o un tacto áspero.',
     image: 'banera1b.jpg',
     alt: 'Bañera blanca reluciente después de un esmaltado profesional'
   },
   {
-    icon: <Palette className="w-12 h-12 text-primary" />,
+    icon: <Palette className="w-12 h-12 icon-gradient" />,
     title: 'Cambio de Color',
     description: '¿Cansado del color de tu baño? Modernízalo sin obras. Ofrecemos un servicio de cambio de color que te permite personalizar tus sanitarios para que se adapten a tu nuevo estilo. Utilizamos pigmentos de alta calidad para garantizar un acabado uniforme y resistente, disponible en una amplia gama de colores.',
     image: 'baneraazul.jpeg',
     alt: 'Bañera esmaltada en un moderno color azul'
   },
   {
-    icon: <ShieldCheck className="w-12 h-12 text-primary" />,
+    icon: <ShieldCheck className="w-12 h-12 icon-gradient" />,
     title: 'Garantía y Calidad',
     description: 'Todos nuestros trabajos están respaldados por una garantía por escrito, porque confiamos en la calidad de nuestros materiales y la pericia de nuestros técnicos. Nuestro objetivo es tu total satisfacción y la máxima durabilidad de nuestras reparaciones y esmaltados.',
     image: 'jhonny.jpeg',

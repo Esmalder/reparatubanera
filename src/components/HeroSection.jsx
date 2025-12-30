@@ -47,7 +47,7 @@ export default function HeroSection() {
       </div>
 
       {/* Contenedor para el contenido que empuja hacia abajo para dejar ver la imagen */}
-      <div className="pt-8">
+      <div className="pt-12">
         {/* En lugar de eliminar el header, lo ocultamos con una transición suave */}
         <header
           className={`fixed z-20 bg-background/80 shadow-md transition-all duration-500 ease-in-out ${
@@ -55,7 +55,7 @@ export default function HeroSection() {
           }`}
         >
           <div className="text-center">
-            <h1 className='text-5xl pb-4'>ReparaTuBañera</h1>
+            <h1 className='text-4xl pb-4'>ReparaTuBañera</h1>
             <p className="text-lg text-muted-foreground py-2">Especialistas en la reparación y esmaltado de bañeras y platos de ducha.</p>
           </div>
         </header>

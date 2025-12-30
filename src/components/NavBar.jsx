@@ -62,7 +62,7 @@ export default function NavBar() {
   ];
 
   const getLinkClass = (linkHref) => {
-    const baseClasses = 'border-b-2 transition-colors duration-300 tracking-wide';
+    const baseClasses = 'border-b-2 transition-colors duration-300 tracking-normal text-base sm:text-lg';
 
     const hrefRendered = renderHref(linkHref);
     const linkPathname = new URL(hrefRendered, window.location.href).pathname;
@@ -76,16 +76,16 @@ export default function NavBar() {
   // Logo should always be blue (acts as home link)
 
   return (
-    <nav className="text-foreground fixed top-4 left-4 right-4 z-10">
-      <div className="mx-auto max-w-7xl px-4">
-        <div className="flex items-center justify-between rounded-full border shadow-md bg-background/60 backdrop-blur-sm p-3">
-          <div className="flex items-center space-x-3">
+    <nav className="text-foreground fixed top-4 left-1 right-1 z-10">
+      <div className="mx-auto max-w-7xl px-2">
+        <div className="flex items-center justify-between rounded-full border shadow-md bg-background/60 backdrop-blur-sm p-4">
+          <div className="flex items-center space-x-2">
             <a href={renderHref('index.html')} className="inline-flex items-center text-blue-500">
-              <Logo className="h-8 w-8" />
+              <Logo className="h-10 w-10" />
             </a>
           </div>
 
-          <ul className="hidden sm:flex space-x-6 items-center">
+          <ul className="hidden sm:flex space-x-4 items-center">
             {navLinks.map((link) => {
               const href = renderHref(link.href);
               return (
@@ -98,12 +98,12 @@ export default function NavBar() {
             })}
           </ul>
 
-          <ul className="flex sm:hidden space-x-2 items-center justify-center w-full">
+          <ul className="flex sm:hidden space-x-1 items-center justify-center w-full">
             {navLinks.map((link) => {
               const href = renderHref(link.href);
               return (
                 <li key={link.href}>
-                  <a href={href} className={`${getLinkClass(link.href)} px-2 text-sm`}>{link.text}</a>
+                  <a href={href} className={`${getLinkClass(link.href)} px-3 text-base`}>{link.text}</a>
                 </li>
               );
             })}

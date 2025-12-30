@@ -3,19 +3,19 @@ import { Mail, Phone, MessageSquare } from 'lucide-react';
 
 const socialLinks = [
   {
-    icon: <Mail className="w-6 h-6" />,
+    icon: <Mail className="w-6 h-6 icon-gradient" />,
     label: 'Email',
-    href: 'mailto:tu-email@example.com', // Reemplaza con tu email
+    href: 'mailto:info@reparatubanera.com', // Reemplaza con tu email
   },
   {
-    icon: <Phone className="w-6 h-6" />,
-    label: 'Llamar',
-    href: 'tel:+34000000000', // Reemplaza con tu teléfono
+    icon: <Phone className="w-6 h-6 icon-gradient" />,
+    label: 'Llamada',
+    href: 'tel:+34613116385', // Reemplaza con tu teléfono
   },
   {
-    icon: <MessageSquare className="w-6 h-6" />,
+    icon: <MessageSquare className="w-6 h-6 icon-gradient" />,
     label: 'WhatsApp',
-    href: 'https://wa.me/34000000000', // Reemplaza con tu número de WhatsApp
+    href: 'https://wa.me/34613116385', // Reemplaza con tu número de WhatsApp
   }
 ];
 

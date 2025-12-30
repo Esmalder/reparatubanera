@@ -5,12 +5,25 @@ import CookieConsent from "./CookieConsent";
 
 export default function Layout({ children }) {
   useEffect(() => {
+    // Add 'loaded' class once the window finishes loading to allow lazy-swap of background images
+    const onLoad = () => document.documentElement.classList.add('loaded');
+    if (document.readyState === 'complete') {
+      onLoad();
+    } else {
+      window.addEventListener('load', onLoad);
+    }
+    return () => window.removeEventListener('load', onLoad);
+  }, []);
+
+  useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
     const handleChange = (e) => {
       if (e.matches) {
         document.documentElement.classList.add('dark');
+        document.documentElement.classList.add('theme-dark');
       } else {
         document.documentElement.classList.remove('dark');
+        document.documentElement.classList.remove('theme-dark');
       }
     };
 
@@ -28,9 +41,24 @@ export default function Layout({ children }) {
 
   return (
     <>
+      {/* Document-level SVG defs for gradients used across the site (hidden) */}
+      <svg aria-hidden="true" width="0" height="0" style={{ position: 'absolute', left: 0, top: 0 }}>
+        <defs>
+          <linearGradient id="icon-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="var(--gradient-stop-1)" />
+            <stop offset="50%" stopColor="var(--gradient-stop-2)" />
+            <stop offset="100%" stopColor="var(--gradient-stop-3)" />
+          </linearGradient>
+        </defs>
+      </svg>
+
       <NavBar />
+
+      {/* Top gradient layer shown behind the site content (CSS-only) */}
+      <div className="site-top-gradient" aria-hidden="true" />
+
       {/* Este div envuelve el contenido principal para elevarlo a una capa superior */}
-      <div className="relative z-0 bg-background text-foreground">
+      <div className="stack backgrounds relative z-0 bg-background text-foreground">
         <main className='pt-15'>
           {children}
         </main>

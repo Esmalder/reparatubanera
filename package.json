@@ -1,10 +1,10 @@
 {
-  "homepage": "https://ivanb.github.io/reparatubanera2",
-  "name": "reparatubanera2",
+  "homepage": "https://esmalder.github.io/reparatubanera",
+  "name": "reparatubanera",
   "private": true,
   "repository": {
     "type": "git",
-    "url": "https://github.com/ivanbardon/reparatubanera2.git"
+    "url": "https://github.com/esmalder/reparatubanera.git"
   },
   "version": "0.0.0",
   "type": "module",

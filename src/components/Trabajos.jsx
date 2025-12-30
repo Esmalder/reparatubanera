@@ -36,7 +36,7 @@ function TrabajoCard({ trabajo }) {
 
 export default function Trabajos() {
   return (
-    <section className="px-4 py-16 text-center bg-background text-foreground">
+    <section className="-mt-px px-4 py-16 text-center bg-background text-foreground">
       <h2 className="text-4xl mb-12">Algunos de Nuestros Trabajos</h2>
       <div className="container max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
         {trabajosData.map((trabajo) => (
