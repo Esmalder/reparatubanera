@@ -23,13 +23,6 @@ export default function Contacto() {
   return (
     <div className="flex items-center justify-center min-h-screen py-24 px-4">
       <div className="w-full max-w-sm text-center">
-        
-        {/* Profile Image */}
-        <img 
-          src="jhonny.jpeg" 
-          alt="Jonatan Garcia, técnico especialista" 
-          className="w-60 h-60 rounded-full mx-auto border-4 shadow-lg"
-        />
 
         {/* Name & Title */}
         <div className="mt-4">

@@ -8,8 +8,8 @@ export default function HeroSection() {
 
   useEffect(() => {
     const handleScroll = () => {
-      // Ocultamos el header si el scroll es mayor de 480px
-      setIsVisible(window.scrollY < 480);
+      // Ocultamos el header si el scroll es mayor de 180px
+      setIsVisible(window.scrollY < 180);
     };
 
     window.addEventListener('scroll', handleScroll);

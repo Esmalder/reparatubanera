@@ -18,10 +18,9 @@ function TrabajoCard({ trabajo }) {
         </p>
         <div className="text-sm text-muted-foreground space-y-1">
           {Object.entries({
-            Tiempo: trabajo.tiempo,
+            'Tiempos de trabajo': trabajo.tiempo,
             'Obra necesaria': trabajo.obraNecesaria,
-            'Tiempo de secado': trabajo.tiempoSecado,
-            Garantía: trabajo.garantia
+            'Tiempo de secado': trabajo.tiempoSecado
           }).map(([label, value]) => (
             <div key={label} className="flex justify-between">
               <span className="font-bold">{label}:</span>
