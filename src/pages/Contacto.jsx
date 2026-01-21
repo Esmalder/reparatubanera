@@ -39,6 +39,7 @@ export default function Contacto() {
 
         {/* Areas legend (moved here from below the map) */}
         <div className="mt-3 text-sm text-left">
+          <h3 className='text-center py-6'>Areas de actuación</h3>
           <div className="flex items-center space-x-2">
             <MapPin className="w-4 h-4 icon-gradient" />
             <span className="font-semibold">Particular:</span>
